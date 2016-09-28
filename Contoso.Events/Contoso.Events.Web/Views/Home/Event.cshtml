@@ -1,0 +1,37 @@
+﻿@model EventViewModel
+@{
+    ViewBag.Title = ViewBag.SubTitle = Model.Event.Title;
+}
+<div class="row">
+    <div class="col-sm-8">
+        <p>
+            @Model.Event.Description
+        </p>
+    </div>
+    <div class="col-sm-4">
+        <div class="card">
+            <div class="card-block">
+                <h4 class="card-title">
+                    @Model.Event.StartTime.ToLongDateString()
+                </h4>
+                <h6 class="card-subtitle text-muted">
+                    @Model.Event.StartTime.ToString("hh:mm tt")
+                    &nbsp;-&nbsp;
+                    @Model.Event.EndTime.ToString("hh:mm tt")
+                </h6>
+            </div>
+            <div class="card-block">
+                <p class="card-text">
+                    @Model.Event.Registrants.Count
+                    Attending
+                </p>
+                @Html.ActionLink("Register Now", "Register", new { id = Model.Event.EventKey }, new { @class = "card-link" })
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12">
+        <img src="http://maps.googleapis.com/maps/api/staticmap?center=@Url.Encode(Model.Event.Location.PrintAddress)&zoom=16&size=800x250" 
+             class="img-fluid img-rounded m-x-auto d-block" 
+             alt="@Model.Event.Location.Name">
+    </div>
+</div>
