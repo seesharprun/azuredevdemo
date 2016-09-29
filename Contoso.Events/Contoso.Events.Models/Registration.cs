@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Contoso.Events.Models
 {
-    public class EventRegistrant
+    public class Registration
     {
         [Key]
         [Column("id")]
@@ -12,25 +12,25 @@ namespace Contoso.Events.Models
         [ScaffoldColumn(false)]
         public int Id { get; set; }
 
-        [Display(Prompt = "First Name")]
-        [Required]
+        [Display(Name = "First Name")]
+        [Required(ErrorMessage = "Your first name is required.")]
         [StringLength(150)]
         public string FirstName { get; set; }
 
-        [Display(Prompt = "Last Name")]
-        [Required]
+        [Display(Name = "Last Name")]
+        [Required(ErrorMessage = "Your last name is required.")]
         [StringLength(150)]
         public string LastName { get; set; }
 
-        [Display(Prompt = "E-Mail Address")]
-        [Required]
+        [Display(Name = "E-Mail Address")]
+        [Required(ErrorMessage = "Your e-mail address is required.")]
+        [EmailAddress]
         [StringLength(500)]
         public string EmailAddress { get; set; }
 
-        [Display(Prompt = "Department")]
-        [Required]
-        [StringLength(250)]
-        public string Department { get; set; }
+        [Display(Name = "How did you learn about this event?")]
+        [Range(1, int.MaxValue, ErrorMessage = "Please indicate how you learned about this event.")]
+        public Referrers Referrer { get; set; }
 
         [ScaffoldColumn(false)]
         public DateTimeOffset Timestamp { get; set; }

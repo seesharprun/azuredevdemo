@@ -17,8 +17,8 @@ namespace Contoso.Events.Data
 
         public DbSet<Event> Events { get; set; }
 
-        public DbSet<EventRegistrant> EventRegistrants { get; set; }
+        public DbSet<Registration> EventRegistrants { get; set; }
 
-        public DbSet<EventLocation> EventLocations { get; set; }
+        public DbSet<Location> EventLocations { get; set; }
     }
 }

@@ -21,17 +21,22 @@
                 </h6>
             </div>
             <div class="card-block">
-                <p class="card-text">
-                    @Model.Event.Registrants.Count
-                    Attending
-                </p>
+                <h6>
+                    @Model.Event.Location.Name
+                </h6>
+                                    <small class="card-text">
+                                        @Model.Event.Location.PrintAddress
+                                    </small>
+            </div>
+            <div class="card-block">
                 @Html.ActionLink("Register Now", "Register", new { id = Model.Event.EventKey }, new { @class = "card-link" })
+            </div>
+            <div class="card-footer text-muted">
+                @Model.Event.Registrants.Count
+                Attending
             </div>
         </div>
     </div>
     <div class="col-sm-12">
-        <img src="http://maps.googleapis.com/maps/api/staticmap?center=@Url.Encode(Model.Event.Location.PrintAddress)&zoom=16&size=800x250" 
-             class="img-fluid img-rounded m-x-auto d-block" 
-             alt="@Model.Event.Location.Name">
     </div>
 </div>

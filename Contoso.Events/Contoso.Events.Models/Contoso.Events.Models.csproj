@@ -52,8 +52,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DownloadPayload.cs" />
-    <Compile Include="EventLocation.cs" />
-    <Compile Include="EventRegistrant.cs" />
+    <Compile Include="Location.cs" />
+    <Compile Include="Referrers.cs" />
+    <Compile Include="Registration.cs" />
     <Compile Include="QueueMessage.cs" />
     <Compile Include="Event.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

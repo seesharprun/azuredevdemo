@@ -15,10 +15,11 @@ namespace Contoso.Events.ViewModels
             {
                 this.Event = context.Events.SingleOrDefault(e => e.EventKey == eventKey);
             }
+            this.Registration = new Registration();
         }
 
         public Event Event { get; set; }
 
-        public EventRegistrant Registration { get; set; }
+        public Registration Registration { get; set; }
     }
 }

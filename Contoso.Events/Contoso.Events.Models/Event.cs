@@ -36,9 +36,9 @@ namespace Contoso.Events.Models
         public string SignInDocumentUrl { get; set; }
         
         [ScaffoldColumn(false)]
-        public virtual EventLocation Location { get; set; }
+        public virtual Location Location { get; set; }
 
         [ScaffoldColumn(false)]
-        public virtual ICollection<EventRegistrant> Registrants { get; set; }
+        public virtual ICollection<Registration> Registrants { get; set; }
     }
 }

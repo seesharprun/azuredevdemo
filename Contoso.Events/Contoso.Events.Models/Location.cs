@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Contoso.Events.Models
 {
-    public class EventLocation
+    public class Location
     {
         [Key]
         [Column("id")]

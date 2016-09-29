@@ -54,9 +54,16 @@ namespace Contoso.Events.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Register(RegisterViewModel model)
+        public ActionResult Register(RegisterViewModel viewModel)
         {
-            return View("Registered", Guid.Empty);
+            if (ModelState.IsValid)
+            {
+                return View("Registered", Guid.Empty);
+            }
+            else
+            {
+                return View(viewModel);
+            }
         }
     }
 }
