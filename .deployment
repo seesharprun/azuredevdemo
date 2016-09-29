@@ -1,2 +1,2 @@
 [config]
-project = Contoso.Events/Contoso.Events.Web.csproj
+project = Contoso.Events/Contoso.Events.Web/Contoso.Events.Web.csproj
