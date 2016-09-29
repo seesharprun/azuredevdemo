@@ -10,24 +10,14 @@ namespace Contoso.Events.ViewModels
 {
     public class DownloadViewModel
     {
-        private readonly CloudStorageAccount _storageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["Microsoft.WindowsAzure.Storage.ConnectionString"]);
+        private readonly CloudStorageAccount _storageAccount = CloudStorageAccount.Parse(ConfigurationManager.ConnectionStrings["Microsoft.WindowsAzure.Storage.ConnectionString"].ConnectionString);
         private readonly string _blobId;
 
         public DownloadViewModel(string blobId)
         {
             _blobId = blobId;
         }
-        public async Task<DownloadPayload> GetStream()
-        {
-            CloudBlobClient blobClient = _storageAccount.CreateCloudBlobClient();
-            CloudBlobContainer container = blobClient.GetContainerReference("signin");
-            await container.CreateIfNotExistsAsync();
 
-            ICloudBlob blob = container.GetBlockBlobReference(_blobId);
-            Stream blobStream = await blob.OpenReadAsync();
-
-            return new DownloadPayload { Stream = blobStream, ContentType = blob.Properties.ContentType };
-        }
         public async Task<string> GetSecureUrl()
         {
             CloudBlobClient blobClient = _storageAccount.CreateCloudBlobClient();

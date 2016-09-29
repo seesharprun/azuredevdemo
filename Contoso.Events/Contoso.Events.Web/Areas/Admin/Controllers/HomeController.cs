@@ -39,19 +39,6 @@ namespace Contoso.Events.Web.Areas.Admin.Controllers
             return View(viewModel);
         }
 
-        public async Task<ActionResult> DownloadSignIn(string id)
-        {
-            string filename = String.Format("{0}.docx", id);
-
-            DownloadViewModel viewModel = new DownloadViewModel(
-                blobId: filename
-            );
-
-            DownloadPayload blobData = await viewModel.GetStream();
-
-            return File(blobData.Stream, blobData.ContentType, filename);
-        }
-
         public async Task<ActionResult> GetSignInUrl(string id)
         {
             string filename = String.Format("{0}.docx", id);

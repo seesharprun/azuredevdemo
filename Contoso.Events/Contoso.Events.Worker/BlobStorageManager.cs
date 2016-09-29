@@ -13,7 +13,7 @@ namespace Contoso.Events.Worker
 
         public BlobStorageManager()
         {
-            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["Microsoft.WindowsAzure.Storage.ConnectionString"]);
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConfigurationManager.ConnectionStrings["Microsoft.WindowsAzure.Storage.ConnectionString"].ConnectionString);
             _blobClient = storageAccount.CreateCloudBlobClient();
         }
 

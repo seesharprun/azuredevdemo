@@ -33,7 +33,7 @@ namespace Contoso.Events.Models
         public Referrers Referrer { get; set; }
 
         [ScaffoldColumn(false)]
-        public DateTimeOffset Timestamp { get; set; }
+        public DateTime Timestamp { get; set; }
 
         [ScaffoldColumn(false)]
         public virtual Event Event { get; set; }

@@ -20,12 +20,14 @@ namespace Contoso.Events.Documents
         {
             MemoryStream stream = new MemoryStream();
             string eventTitle = eventItem.Title;
-            List<string> names = eventItem.Registrants.Select(er => er.FirstName + " " + er.LastName).ToList();
-            CreateDocument(stream, eventTitle, names);
+            List<Registration> registrants = eventItem.Registrants
+                .OrderByDescending(er => er.Timestamp)
+                .ToList();
+            CreateDocument(stream, eventTitle, registrants);
             return stream;
         }
 
-        private static void CreateDocument(Stream stream, string eventName, IEnumerable<string> names)
+        private static void CreateDocument(Stream stream, string eventName, IEnumerable<Registration> registrants)
         {
             using (WordprocessingDocument doc = WordprocessingDocument.Create(stream, WordprocessingDocumentType.Document, true))
             {
@@ -39,7 +41,7 @@ namespace Contoso.Events.Documents
                     CreateHeaderParagraph(eventName)
                 );
 
-                Table table = CreateTable(names);
+                Table table = CreateTable(registrants);
 
                 mainDocumentPart.Document.Body.Append(table);
 
@@ -47,7 +49,7 @@ namespace Contoso.Events.Documents
             }
         }
 
-        private static Table CreateTable(IEnumerable<string> names)
+        private static Table CreateTable(IEnumerable<Registration> registrants)
         {
             Table table = new Table(
                 new TableProperties(
@@ -59,16 +61,16 @@ namespace Contoso.Events.Documents
                 )
             );
 
-            foreach (var name in names)
+            foreach (var registrant in registrants)
             {
                 table.Append(
-                    CreateTableRow(name)
+                    CreateTableRow(registrant)
                 );
             }
             return table;
         }
 
-        private static TableRow CreateTableRow(string name)
+        private static TableRow CreateTableRow(Registration registrant)
         {
             return new TableRow(
                 new TableCell(
@@ -84,16 +86,36 @@ namespace Contoso.Events.Documents
                             new RunProperties(
                                 new FontSize()
                                 {
-                                    Val = new StringValue("18")
+                                    Val = new StringValue("16")
                                 }
                             ),
-                            new Text(name)
+                            new Text(String.Format("{1}, {0}", registrant.FirstName, registrant.LastName))
                         )
                     )
                 ),
                 new TableCell(
                     new TableCellProperties(
-                        new TableCellWidth() { Type = TableWidthUnitValues.Pct, Width = "4000" },
+                        new TableCellVerticalAlignment() { Val = TableVerticalAlignmentValues.Bottom },
+                        new TableCellWidth() { Type = TableWidthUnitValues.Pct, Width = "1000" }
+                    ),
+                    new Paragraph(
+                        new ParagraphProperties(
+                            new SpacingBetweenLines() { After = "0" }
+                        ),
+                        new Run(
+                            new RunProperties(
+                                new FontSize()
+                                {
+                                    Val = new StringValue("16")
+                                }
+                            ),
+                            new Text(registrant.EmailAddress)
+                        )
+                    )
+                ),
+                new TableCell(
+                    new TableCellProperties(
+                        new TableCellWidth() { Type = TableWidthUnitValues.Pct, Width = "3000" },
                         new TableCellBorders() { BottomBorder = new BottomBorder { Val = BorderValues.Single, Size = 2 } }
                     ),
                     new Paragraph(
