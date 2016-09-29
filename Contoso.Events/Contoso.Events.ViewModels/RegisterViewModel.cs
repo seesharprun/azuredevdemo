@@ -1,6 +1,7 @@
 ﻿using Contoso.Events.Data;
 using Contoso.Events.Models;
 using System.Linq;
+using System;
 
 namespace Contoso.Events.ViewModels
 {
@@ -21,5 +22,22 @@ namespace Contoso.Events.ViewModels
         public Event Event { get; set; }
 
         public Registration Registration { get; set; }
+
+        public bool PersistRegistration()
+        {
+            using (EventsContext context = new EventsContext())
+            {
+                this.Event = context.Events.SingleOrDefault(e => e.EventKey == this.Event.EventKey);
+
+                this.Registration.Timestamp = DateTime.Now;
+                this.Registration.Event = this.Event;
+
+                this.Registration = context.EventRegistrants.Add(this.Registration);
+
+                context.SaveChanges();
+
+                return true;
+            }
+        }
     }
 }

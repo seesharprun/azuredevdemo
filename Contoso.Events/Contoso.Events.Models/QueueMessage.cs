@@ -7,7 +7,7 @@ namespace Contoso.Events.Models
     public class QueueMessage
     {
         [DataMember]
-        public int EventId { get; set; }
+        public Guid EventId { get; set; }
 
         [DataMember]
         public QueueMessageType MessageType { get; set; }

@@ -10,7 +10,8 @@ namespace Contoso.Events.Models
         [Key]
         [Column("id")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        [ScaffoldColumn(false)]
+        public Guid Id { get; set; }
 
         [Required]
         public string EventKey { get; set; }

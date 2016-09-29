@@ -58,12 +58,13 @@ namespace Contoso.Events.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                return View("Registered", Guid.Empty);
+                if (viewModel.PersistRegistration())
+                {
+                    return View("Registered", viewModel.Registration.Id);
+                }
             }
-            else
-            {
-                return View(viewModel);
-            }
+            
+            return View(viewModel);
         }
     }
 }

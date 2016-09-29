@@ -10,7 +10,7 @@ namespace Contoso.Events.Models
         [Column("id")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [ScaffoldColumn(false)]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [Display(Name = "First Name")]
         [Required(ErrorMessage = "Your first name is required.")]
