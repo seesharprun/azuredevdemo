@@ -115,7 +115,10 @@
       ],
       "properties": {
         "name": "[variables('identifiers').webSiteName]",
-        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('identifiers').appServicePlanName)]"
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('identifiers').appServicePlanName)]",
+        "siteConfig": {
+            "AlwaysOn": true
+        }
       },
       "resources": [
         {
