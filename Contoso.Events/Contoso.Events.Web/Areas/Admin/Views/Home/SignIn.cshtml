@@ -27,7 +27,7 @@ else if (@Model.SignInSheetState == SignInSheetState.SignInDocumentAlreadyExists
 
     <div class="card card-inverse card-success text-xs-center">
         <div class="card-block">
-            <h4 class="card-title">Sign-In Document Already Exists</h4>
+            <h4 class="card-title">Sign-In Document Ready</h4>
             <p class="card-text">
                 @Html.ActionLink("Download Sign-In Sheet", "GetSignInUrl", new { id = blobName }, new { @class = "btn btn-secondary btn-sm" })
             </p>
