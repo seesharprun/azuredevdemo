@@ -1,4 +1,4 @@
-# Developing Microsoft Azure Solution Hackathon
+# Developing Microsoft Azure Solutions Hackathon
 
 ## Scenario
 
