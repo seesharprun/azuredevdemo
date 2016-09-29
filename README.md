@@ -1,2 +1,0 @@
-# azuredevdemo
-Demo Repository
